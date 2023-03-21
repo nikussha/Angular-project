@@ -1,0 +1,25 @@
+<div class="div-container" *ngIf="show; else score">
+  <h1 class="score">Correct Answers {{ correct }}/10</h1>
+  <div class="questions" *ngIf="questions">
+    <h1 class="qstn">{{ questions[index] }}</h1>
+  </div>
+  <div class="answer-div" *ngIf="answers">
+    <button
+      #ans
+      ans
+      (click)="checkanswers(ans, answers)"
+      *ngFor="let answer of answers[index]"
+      [ngClass]="
+        answer == data[index]['correct_answer'] ? 'correct' : 'incorrect'
+      "
+    >
+      {{ answer }}
+    </button>
+  </div>
+</div>
+<ng-template #score>
+  <div class="template">
+    <h3>Thanks for playing</h3>
+    <h1>Your Score is {{ correct }}</h1>
+  </div>
+</ng-template>
